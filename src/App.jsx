@@ -12,13 +12,10 @@ function App() {
         for (let i = 0; i < 10; i++) {
             newDice.push(generateNewDie());
         }
-        // console.log(newDice)
         return newDice;
     }
 
     React.useEffect(() => {
-        // console.log("Dice state changed");
-        // setTenzies(true);
         let hasWon = true;
 
         const superNumber = dice[0].value;
@@ -41,7 +38,6 @@ function App() {
                 id == die.id ? { ...die, isHeld: !die.isHeld } : die
             )
         );
-        // console.log(dice)
     }
 
     const diceElements = dice.map((die) => (
@@ -55,17 +51,15 @@ function App() {
     ));
 
     function generateNewDice() {
-        // setDice(allNewDice())
         if(tenzies) {
             setDice(prevDice => prevDice.map(die => ({...die, isHeld: false})))
             setTenzies(!tenzies)
         }
         setDice((prevDice) =>
-            prevDice.map((die, index) => {
+            prevDice.map((die) => {
                 return die.isHeld ? die : generateNewDie();
             })
         );
-        // console.log(newDice)
     }
 
     function generateNewDie() {
